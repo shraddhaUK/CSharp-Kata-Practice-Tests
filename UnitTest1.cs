@@ -49,7 +49,7 @@ namespace PracticeSampleTests
          [Fact]
         public void SupportDelimiter()
         {
-            string s ="//;\n1;2";
+            string s =@"//;\n1;2";
             int i = Class1.Add(s);
            Assert.Equal(3,i);
         }
@@ -57,9 +57,33 @@ namespace PracticeSampleTests
          [Fact]
         public void checkNegativeNumber()
         {
-            string s ="-1,1,2,-2";
+            string s ="-1,1,2";
             int i = Class1.Add(s);
            Assert.Equal(3,i);
+        }
+
+         [Fact]
+        public void checkNumberIgnore()
+        {
+            string s ="2,1001,5";
+            int i = Class1.Add(s);
+           Assert.Equal(7,i);
+        }
+
+        [Fact]
+        public void SupportDelimiterOfAnyLength()
+        {
+            string s ="//[***]\n1***2***3";
+            int i = Class1.Add(s);
+           Assert.Equal(6,i);
+        }
+
+         [Fact]
+        public void SupportMultipleDelimiter()
+        {
+            string s ="//[*][%]\n1*2%3";
+            int i = Class1.Add(s);
+           Assert.Equal(6,i);
         }
     }
 }
